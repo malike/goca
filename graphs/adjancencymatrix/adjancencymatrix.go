@@ -1,6 +1,6 @@
 package adjancencymatrix
 
-import "gods/graphs"
+import "goca/graphs"
 
 type AdjacencyMatrix struct {
 	Vertices  int
@@ -11,7 +11,7 @@ func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex 
 	return []int{1, 2}
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetWeightedOfEdge(vertexOne int, vertexTwo int) int {
+func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
 	return 1
 }
 

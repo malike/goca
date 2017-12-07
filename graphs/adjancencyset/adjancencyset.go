@@ -1,6 +1,6 @@
 package adjancencyset
 
-import "gods/graphs"
+import "goca/graphs"
 
 type AdjacencySet struct {
 	Vertices  int
@@ -11,7 +11,7 @@ func (adjacencySet AdjacencySet) GetAdjacentVerticesNodesForVertex(vertex int) [
 	return []int{1, 2}
 }
 
-func (adjacencySet AdjacencySet) GetWeightedOfEdge(vertexOne int, vertexTwo int) int {
+func (adjacencySet AdjacencySet) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
 	return 1
 }
 
