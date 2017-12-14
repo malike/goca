@@ -31,8 +31,6 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdge(vertexOne int, vertexTwo int) err
 	AdjMatrix[vertexOne][vertexTwo] = 1
 	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
 
-		AdjMatrix[vertexTwo] = make([]int, adjacencyMatrix.Vertices)
-
 		AdjMatrix[vertexTwo][vertexOne] = 1
 	}
 	return nil
