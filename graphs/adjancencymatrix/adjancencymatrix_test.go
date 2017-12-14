@@ -6,7 +6,7 @@ import (
 )
 
 var testAdjMatrixDirected = AdjacencyMatrix{4, graphs.DIRECTED}
-var testAdjaMatrixUnDirected = AdjacencyMatrix{4, graphs.UNDIRECTED}
+var testAdjMatrixUnDirected = AdjacencyMatrix{4, graphs.UNDIRECTED}
 
 func TestAdjacencyMatrix_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 	testAdjMatrixDirected.Init()
@@ -30,9 +30,9 @@ func TestAdjacencyMatrix_AddEdgeDirected(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_AddEdgeUndirectedDirected(t *testing.T) {
-	testAdjaMatrixUnDirected.Init()
-	err := testAdjaMatrixUnDirected.AddEdge(2, 1)
+func TestAdjacencyMatrix_AddEdgeUndirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	err := testAdjMatrixUnDirected.AddEdge(2, 1)
 	if err != nil {
 		t.Error("Index was out of bounds it should have failed")
 	}
@@ -44,7 +44,43 @@ func TestAdjacencyMatrix_AddEdgeUndirectedDirected(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_AddEdgeWithWeight(t *testing.T) {
+func TestAdjacencyMatrix_AddEdgeWeightDirectedGreaterThanVertex(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	err := testAdjMatrixDirected.AddEdgeWithWeight(10, 7, -3)
+	if err == nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
+}
+
+func TestAdjacencyMatrix_AddEdgeWithWeightDirected(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	err := testAdjMatrixDirected.AddEdgeWithWeight(2, 1, -3)
+	if err != nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
+	if AdjMatrix[2][1] != -3 {
+		t.Error("Data not found at index")
+	}
+	if AdjMatrix[1][2] != 0 {
+		t.Error("Data not found at index")
+	}
+}
+
+func TestAdjacencyMatrix_AddEdgeWithWeightUnDirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	err := testAdjMatrixUnDirected.AddEdgeWithWeight(2, 1, -3)
+	if err != nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
+	if AdjMatrix[2][1] != -3 {
+		t.Error("Data not found at index")
+	}
+	if AdjMatrix[1][2] != -3 {
+		t.Error("Data not found at index")
+	}
+}
+
+func TestAdjacencyMatrix_RemoveEdge(t *testing.T) {
 
 }
 
@@ -52,9 +88,7 @@ func TestAdjacencyMatrix_HasEdge(t *testing.T) {
 
 }
 
-func TestAdjacencyMatrix_RemoveEdge(t *testing.T) {
 
-}
 
 func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 
