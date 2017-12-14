@@ -5,7 +5,7 @@ package adjancencylist
 * Adjancency List is one of the representations of Graphs. Although this is not an algorithm.
 * We'll need this to test all the Graph Algorithms.
 *
-*/
+ */
 
 import "goca/graphs"
 

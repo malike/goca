@@ -8,6 +8,18 @@ const (
 )
 
 type Graphs interface {
+	Init()
+
+	AddEdge(vertexOne int, vertexTwo int) error
+
+	AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error
+
+	RemoveEdge(vertexOne int, vertexTwo int) error
+
+	HasEdge(vertexOne int, vertexTwo int) bool
+
+	GetGraphType() GraphType
+
 	GetAdjacentVerticesNodesForVertex(vertex int) []int
 
 	GetWeightOfEdge(vertexOne int, vertexTwo int) int
@@ -17,14 +29,4 @@ type Graphs interface {
 	GetIndegreeForVertex(vertex int) int
 
 	GetOutdegreeForVertex(vertex int) int
-
-	AddEdge(vertexOne int, vertexTwo int)
-
-	AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int)
-
-	RemoveEdge(vertexOne int, vertexTwo int)
-
-	HasEdge(vertexOne int, vertexTwo int) bool
-
-	GetGraphType() GraphType
 }
