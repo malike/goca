@@ -85,7 +85,7 @@ func TestAdjacencyMatrix_RemoveEdgeDirected(t *testing.T) {
 	testAdjMatrixDirected.AddEdge(2, 1)
 	err := testAdjMatrixDirected.RemoveEdge(2, 1)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error removing edge")
 	}
 	if AdjMatrix[2][1] != 0 {
 		t.Error("Data not removed at index")
@@ -97,7 +97,7 @@ func TestAdjacencyMatrix_RemoveEdgeUnDirected(t *testing.T) {
 	testAdjMatrixUnDirected.AddEdge(2, 1)
 	err := testAdjMatrixUnDirected.RemoveEdge(2, 1)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error removing edge")
 	}
 	if AdjMatrix[2][1] != 0 {
 		t.Error("Data not removed at index")
@@ -107,8 +107,26 @@ func TestAdjacencyMatrix_RemoveEdgeUnDirected(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_HasEdge(t *testing.T) {
+func TestAdjacencyMatrix_HasEdgeDirected(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdge(2, 1)
+	if !testAdjMatrixDirected.HasEdge(2, 1) {
+		t.Error("No relationship, when there should be one")
+	}
+	if testAdjMatrixDirected.HasEdge(1, 2) {
+		t.Error("Relationship, when there shouldn't be one")
+	}
+}
 
+func TestAdjacencyMatrix_HasEdgeUndirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	testAdjMatrixUnDirected.AddEdge(2, 1)
+	if !testAdjMatrixUnDirected.HasEdge(2, 1) {
+		t.Error("No relationship, when there should be one")
+	}
+	if !testAdjMatrixUnDirected.HasEdge(1, 2) {
+		t.Error("No relationship, when there should be one")
+	}
 }
 
 func TestAdjacencyMatrix_GetGraphType(t *testing.T) {

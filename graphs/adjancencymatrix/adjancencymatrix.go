@@ -39,8 +39,6 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdgeWithWeight(vertexOne int, vertexTw
 		return errors.New("Index out of bounds")
 	}
 
-	AdjMatrix[vertexOne] = make([]int, adjacencyMatrix.Vertices)
-
 	AdjMatrix[vertexOne][vertexTwo] = weight
 	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
 
@@ -54,8 +52,6 @@ func (adjacencyMatrix AdjacencyMatrix) RemoveEdge(vertexOne int, vertexTwo int) 
 		return errors.New("Index out of bounds")
 	}
 
-	AdjMatrix[vertexOne] = make([]int, adjacencyMatrix.Vertices)
-
 	AdjMatrix[vertexOne][vertexTwo] = 0
 	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
 
@@ -65,7 +61,10 @@ func (adjacencyMatrix AdjacencyMatrix) RemoveEdge(vertexOne int, vertexTwo int) 
 }
 
 func (adjacencyMatrix AdjacencyMatrix) HasEdge(vertexOne int, vertexTwo int) bool {
-	return false
+	if vertexOne > adjacencyMatrix.Vertices || vertexTwo > adjacencyMatrix.Vertices {
+		return false
+	}
+	return (AdjMatrix[vertexOne][vertexTwo] != 0)
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetGraphType() graphs.GraphType {
