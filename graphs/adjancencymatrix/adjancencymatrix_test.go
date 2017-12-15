@@ -88,8 +88,6 @@ func TestAdjacencyMatrix_HasEdge(t *testing.T) {
 
 }
 
-
-
 func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 
 }
