@@ -37,10 +37,32 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdge(vertexOne int, vertexTwo int) err
 }
 
 func (adjacencyMatrix AdjacencyMatrix) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error {
+	if vertexOne > adjacencyMatrix.Vertices || vertexTwo > adjacencyMatrix.Vertices {
+		return errors.New("Index out of bounds")
+	}
+
+	AdjMatrix[vertexOne] = make([]int, adjacencyMatrix.Vertices)
+
+	AdjMatrix[vertexOne][vertexTwo] = weight
+	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
+
+		AdjMatrix[vertexTwo][vertexOne] = weight
+	}
 	return nil
 }
 
 func (adjacencyMatrix AdjacencyMatrix) RemoveEdge(vertexOne int, vertexTwo int) error {
+	if vertexOne > adjacencyMatrix.Vertices || vertexTwo > adjacencyMatrix.Vertices {
+		return errors.New("Index out of bounds")
+	}
+
+	AdjMatrix[vertexOne] = make([]int, adjacencyMatrix.Vertices)
+
+	AdjMatrix[vertexOne][vertexTwo] = 0
+	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
+
+		AdjMatrix[vertexTwo][vertexOne] = 0
+	}
 	return nil
 }
 

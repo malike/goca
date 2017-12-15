@@ -80,8 +80,31 @@ func TestAdjacencyMatrix_AddEdgeWithWeightUnDirected(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_RemoveEdge(t *testing.T) {
+func TestAdjacencyMatrix_RemoveEdgeDirected(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdge(2, 1)
+	err := testAdjMatrixDirected.RemoveEdge(2, 1)
+	if err != nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
+	if AdjMatrix[2][1] != 0 {
+		t.Error("Data not removed at index")
+	}
+}
 
+func TestAdjacencyMatrix_RemoveEdgeUnDirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	testAdjMatrixUnDirected.AddEdge(2, 1)
+	err := testAdjMatrixUnDirected.RemoveEdge(2, 1)
+	if err != nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
+	if AdjMatrix[2][1] != 0 {
+		t.Error("Data not removed at index")
+	}
+	if AdjMatrix[1][2] != 0 {
+		t.Error("Data not removed at index")
+	}
 }
 
 func TestAdjacencyMatrix_HasEdge(t *testing.T) {
