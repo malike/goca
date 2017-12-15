@@ -26,8 +26,6 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdge(vertexOne int, vertexTwo int) err
 		return errors.New("Index out of bounds")
 	}
 
-	AdjMatrix[vertexOne] = make([]int, adjacencyMatrix.Vertices)
-
 	AdjMatrix[vertexOne][vertexTwo] = 1
 	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
 
