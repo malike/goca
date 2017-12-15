@@ -20,7 +20,7 @@ func TestAdjacencyMatrix_AddEdgeDirected(t *testing.T) {
 	testAdjMatrixDirected.Init()
 	err := testAdjMatrixDirected.AddEdge(2, 1)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error adding edge")
 	}
 	if AdjMatrix[2][1] != 1 {
 		t.Error("Data not found at index")
@@ -34,7 +34,7 @@ func TestAdjacencyMatrix_AddEdgeUndirected(t *testing.T) {
 	testAdjMatrixUnDirected.Init()
 	err := testAdjMatrixUnDirected.AddEdge(2, 1)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error adding edge")
 	}
 	if AdjMatrix[2][1] != 1 {
 		t.Error("Data not found at index")
@@ -56,7 +56,7 @@ func TestAdjacencyMatrix_AddEdgeWithWeightDirected(t *testing.T) {
 	testAdjMatrixDirected.Init()
 	err := testAdjMatrixDirected.AddEdgeWithWeight(2, 1, -3)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error adding edge")
 	}
 	if AdjMatrix[2][1] != -3 {
 		t.Error("Data not found at index")
@@ -70,7 +70,7 @@ func TestAdjacencyMatrix_AddEdgeWithWeightUnDirected(t *testing.T) {
 	testAdjMatrixUnDirected.Init()
 	err := testAdjMatrixUnDirected.AddEdgeWithWeight(2, 1, -3)
 	if err != nil {
-		t.Error("Index was out of bounds it should have failed")
+		t.Error("Error adding edge")
 	}
 	if AdjMatrix[2][1] != -3 {
 		t.Error("Data not found at index")
