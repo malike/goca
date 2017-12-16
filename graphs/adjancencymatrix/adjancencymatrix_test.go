@@ -140,12 +140,25 @@ func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertex(t *testing.T) {
 
 }
 
-func TestAdjacencyMatrix_GetWeightOfEdge(t *testing.T) {
+func TestAdjacencyMatrix_GetWeightOfEdgeDirected(t *testing.T) {
 
+}
+func TestAdjacencyMatrix_GetWeightOfEdgeUndirected(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdgeWithWeight(2, 1, -3)
+	weight := testAdjMatrixDirected.GetWeightOfEdge(2, 1)
+	if weight != -3 {
+		t.Error("Data not found at index")
+	}
 }
 
 func TestAdjacencyMatrix_GetNumberOfVertices(t *testing.T) {
-
+	testAdjMatrixUnDirected.Init()
+	testAdjMatrixUnDirected.AddEdgeWithWeight(2, 1, -3)
+	weight := testAdjMatrixUnDirected.GetWeightOfEdge(2, 1)
+	if weight != -3 {
+		t.Error("Data not found at index")
+	}
 }
 
 func TestAdjacencyMatrix_GetIndegreeForVertex(t *testing.T) {

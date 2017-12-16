@@ -76,6 +76,9 @@ func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex 
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
+	if vertexOne > adjacencyMatrix.Vertices || vertexTwo > adjacencyMatrix.Vertices {
+		return 0
+	}
 	return AdjMatrix[vertexOne][vertexTwo]
 }
 
