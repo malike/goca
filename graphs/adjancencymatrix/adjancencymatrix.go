@@ -83,7 +83,7 @@ func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo 
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetNumberOfVertices() int {
-	return 1
+	return adjacencyMatrix.Vertices
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetIndegreeForVertex(vertex int) int {
