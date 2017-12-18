@@ -71,8 +71,8 @@ func (adjacencyMatrix AdjacencyMatrix) GetGraphType() graphs.GraphType {
 	return adjacencyMatrix.GraphType
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex int) []int {
-	return []int{1, 2}
+func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool {
+	return nil
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) int {

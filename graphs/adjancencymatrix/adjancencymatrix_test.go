@@ -136,7 +136,16 @@ func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertex(t *testing.T) {
+func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	testAdjMatrixUnDirected.AddEdge(2, 1)
+	testAdjMatrixUnDirected.AddEdge(2, 3)
+	testAdjMatrixUnDirected.AddEdge(1, 1)
+	testAdjMatrixUnDirected.AddEdge(2, 4)
+	nodes := testAdjMatrixUnDirected.GetAdjacentVerticesNodesForVertex(2)
+	if len(nodes) != 3 {
+		t.Error("Nodes size not matching")
+	}
 
 }
 

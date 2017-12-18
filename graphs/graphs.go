@@ -20,7 +20,7 @@ type Graphs interface {
 
 	GetGraphType() GraphType
 
-	GetAdjacentVerticesNodesForVertex(vertex int) []int
+	GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool
 
 	GetWeightOfEdge(vertexOne int, vertexTwo int) int
 
