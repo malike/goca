@@ -71,11 +71,16 @@ func (adjacencyMatrix AdjacencyMatrix) GetGraphType() graphs.GraphType {
 	return adjacencyMatrix.GraphType
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex int) []int {
+func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool {
+	adjacencyMatrixVertices := map[int]bool{}
 	if vertex >= adjacencyMatrix.Vertices || vertex < 0 {
-		return []int{}
+		return adjacencyMatrixVertices
 	}
-	adjacencyMatrixVertices := AdjMatrix[vertex]
+	for i := 0; i < adjacencyMatrix.Vertices; i++ {
+		if AdjMatrix[vertex][i] != 0 {
+			adjacencyMatrixVertices[i] = (AdjMatrix[vertex][i] != 0)
+		}
+	}
 	return adjacencyMatrixVertices
 }
 

@@ -32,7 +32,7 @@ func (adjacencySet AdjacencySet) GetGraphType() graphs.GraphType {
 	return nil
 }
 
-func (adjacencySet AdjacencySet) GetAdjacentVerticesNodesForVertex(vertex int) []int {
+func (adjacencySet AdjacencySet) GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool {
 	return nil
 }
 

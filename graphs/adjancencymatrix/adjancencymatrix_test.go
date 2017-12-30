@@ -149,16 +149,17 @@ func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexDirectedOutOfBounds(t 
 	}
 }
 
-func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T) {
-	testAdjMatrixUnDirected.Init()
-	testAdjMatrixUnDirected.AddEdge(2, 1)
-	testAdjMatrixUnDirected.AddEdge(2, 0)
-	testAdjMatrixUnDirected.AddEdge(1, 1)
-	testAdjMatrixUnDirected.AddEdge(2, 2)
-	nodes := testAdjMatrixUnDirected.GetAdjacentVerticesNodesForVertex(2)
+func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexdirected(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdge(2, 1)
+	testAdjMatrixDirected.AddEdge(2, 0)
+	testAdjMatrixDirected.AddEdge(1, 1)
+	testAdjMatrixDirected.AddEdge(2, 3)
+	nodes := testAdjMatrixDirected.GetAdjacentVerticesNodesForVertex(2)
 	if len(nodes) != 3 {
-		t.Errorf("Nodes size not matching. Size %d instead of %d",len(nodes),3)
+		t.Errorf("Nodes size not matching. Size %d instead of %d. %v", len(nodes), 3, nodes)
 	}
+	t.Log("Nodes size matched. %v", nodes)
 }
 
 func TestAdjacencyMatrix_GetWeightOfEdgeDirected(t *testing.T) {
