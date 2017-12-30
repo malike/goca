@@ -139,15 +139,26 @@ func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexDirectedOutOfBounds(t *testing.T) {
 	testAdjMatrixDirected.Init()
 	testAdjMatrixDirected.AddEdge(2, 1)
-	testAdjMatrixDirected.AddEdge(2, 3)
-	testAdjMatrixDirected.AddEdge(1, 4)
+	testAdjMatrixDirected.AddEdge(2, 0)
+	testAdjMatrixDirected.AddEdge(1, 3)
 	testAdjMatrixDirected.AddEdge(2, 2)
-	testAdjMatrixDirected.AddEdge(2, 4)
+	testAdjMatrixDirected.AddEdge(2, 3)
 	vertices := testAdjMatrixDirected.GetAdjacentVerticesNodesForVertex(10)
-	if len(vertices) != 0{
+	if len(vertices) != 0 {
 		t.Error("Vertices should be 0. Data out of bounds")
 	}
+}
 
+func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T) {
+	testAdjMatrixUnDirected.Init()
+	testAdjMatrixUnDirected.AddEdge(2, 1)
+	testAdjMatrixUnDirected.AddEdge(2, 0)
+	testAdjMatrixUnDirected.AddEdge(1, 1)
+	testAdjMatrixUnDirected.AddEdge(2, 2)
+	nodes := testAdjMatrixUnDirected.GetAdjacentVerticesNodesForVertex(2)
+	if len(nodes) != 3 {
+		t.Errorf("Nodes size not matching. Size %d instead of %d",len(nodes),3)
+	}
 }
 
 func TestAdjacencyMatrix_GetWeightOfEdgeDirected(t *testing.T) {
