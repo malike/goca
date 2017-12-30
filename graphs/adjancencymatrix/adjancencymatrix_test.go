@@ -136,7 +136,17 @@ func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertex(t *testing.T) {
+func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexDirectedOutOfBounds(t *testing.T) {
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdge(2, 1)
+	testAdjMatrixDirected.AddEdge(2, 3)
+	testAdjMatrixDirected.AddEdge(1, 4)
+	testAdjMatrixDirected.AddEdge(2, 2)
+	testAdjMatrixDirected.AddEdge(2, 4)
+	vertices := testAdjMatrixDirected.GetAdjacentVerticesNodesForVertex(10)
+	if len(vertices) != 0{
+		t.Error("Vertices should be 0. Data out of bounds")
+	}
 
 }
 
