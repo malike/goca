@@ -159,7 +159,7 @@ func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexdirected(t *testing.T)
 	if len(nodes) != 3 {
 		t.Errorf("Nodes size not matching. Size %d instead of %d. %v", len(nodes), 3, nodes)
 	}
-	t.Log("Nodes size matched. %v", nodes)
+	t.Logf("Nodes size matched. %v", nodes)
 }
 
 func TestAdjacencyMatrix_GetWeightOfEdgeDirected(t *testing.T) {
@@ -188,7 +188,15 @@ func TestAdjacencyMatrix_GetNumberOfVertices(t *testing.T) {
 }
 
 func TestAdjacencyMatrix_GetIndegreeForVertex(t *testing.T) {
-
+	testAdjMatrixDirected.Init()
+	testAdjMatrixDirected.AddEdge(2, 1)
+	testAdjMatrixDirected.AddEdge(2, 0)
+	testAdjMatrixDirected.AddEdge(1, 1)
+	testAdjMatrixDirected.AddEdge(2, 3)
+	testAdjMatrixDirected.AddEdge(0, 3)
+	if testAdjMatrixDirected.GetIndegreeForVertex(2) != 3 {
+		t.Errorf("Nodes size not matching.")
+	}
 }
 
 func TestAdjacencyMatrix_GetOutdegreeForVertex(t *testing.T) {

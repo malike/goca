@@ -96,7 +96,7 @@ func (adjacencyMatrix AdjacencyMatrix) GetNumberOfVertices() int {
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetIndegreeForVertex(vertex int) int {
-	return 1
+	return len(adjacencyMatrix.GetAdjacentVerticesNodesForVertex(vertex))
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetOutdegreeForVertex(vertex int) int {
