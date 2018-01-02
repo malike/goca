@@ -136,26 +136,26 @@ func TestAdjacencyMatrix_GetGraphType(t *testing.T) {
 	}
 }
 
-func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexDirectedOutOfBounds(t *testing.T) {
+func TestAdjacencyMatrix_GetAdjacentNodesForVertexDirectedOutOfBounds(t *testing.T) {
 	testAdjMatrixDirected.Init()
 	testAdjMatrixDirected.AddEdge(2, 1)
 	testAdjMatrixDirected.AddEdge(2, 0)
 	testAdjMatrixDirected.AddEdge(1, 3)
 	testAdjMatrixDirected.AddEdge(2, 2)
 	testAdjMatrixDirected.AddEdge(2, 3)
-	vertices := testAdjMatrixDirected.GetAdjacentVerticesNodesForVertex(10)
+	vertices := testAdjMatrixDirected.GetAdjacentNodesForVertex(10)
 	if len(vertices) != 0 {
 		t.Error("Vertices should be 0. Data out of bounds")
 	}
 }
 
-func TestAdjacencyMatrix_GetAdjacentVerticesNodesForVertexdirected(t *testing.T) {
+func TestAdjacencyMatrix_GetAdjacentNodesForVertexDirected(t *testing.T) {
 	testAdjMatrixDirected.Init()
 	testAdjMatrixDirected.AddEdge(2, 1)
 	testAdjMatrixDirected.AddEdge(2, 0)
 	testAdjMatrixDirected.AddEdge(1, 1)
 	testAdjMatrixDirected.AddEdge(2, 3)
-	nodes := testAdjMatrixDirected.GetAdjacentVerticesNodesForVertex(2)
+	nodes := testAdjMatrixDirected.GetAdjacentNodesForVertex(2)
 	if len(nodes) != 3 {
 		t.Errorf("Nodes size not matching. Size %d instead of %d. %v", len(nodes), 3, nodes)
 	}

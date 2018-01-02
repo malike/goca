@@ -32,7 +32,11 @@ func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
 	return nil
 }
 
-func (adjacencyList AdjacencyList) GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool {
+func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int]bool {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) GetOutgoingNodesForVertex(vertex int) map[int]bool {
 	return nil
 }
 

@@ -71,7 +71,7 @@ func (adjacencyMatrix AdjacencyMatrix) GetGraphType() graphs.GraphType {
 	return adjacencyMatrix.GraphType
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex int) map[int]bool {
+func (adjacencyMatrix AdjacencyMatrix) GetAdjacentNodesForVertex(vertex int) map[int]bool {
 	adjacencyMatrixVertices := map[int]bool{}
 	if vertex >= adjacencyMatrix.Vertices || vertex < 0 {
 		return adjacencyMatrixVertices
@@ -82,6 +82,10 @@ func (adjacencyMatrix AdjacencyMatrix) GetAdjacentVerticesNodesForVertex(vertex 
 		}
 	}
 	return adjacencyMatrixVertices
+}
+
+func (adjacencyMatrix AdjacencyMatrix) GetOutgoingNodesForVertex(vertex int) map[int]bool {
+	return nil
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
@@ -96,7 +100,14 @@ func (adjacencyMatrix AdjacencyMatrix) GetNumberOfVertices() int {
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetIndegreeForVertex(vertex int) int {
-	return len(adjacencyMatrix.GetAdjacentVerticesNodesForVertex(vertex))
+	indegree := 0
+	adjacentNodes := adjacencyMatrix.GetAdjacentNodesForVertex(vertex)
+	for key := range adjacentNodes {
+		if adjacentNodes[key] {
+			indegree++
+		}
+	}
+	return indegree
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetOutdegreeForVertex(vertex int) int {
