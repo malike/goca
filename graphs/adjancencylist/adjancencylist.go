@@ -1,12 +1,5 @@
 package adjancencylist
 
-/*
-*
-* Adjancency List is one of the representations of Graphs. Although this is not an algorithm.
-* We'll need this to test all the Graph Algorithms.
-*
- */
-
 import "goca/graphs"
 
 type AdjacencyList struct {
@@ -14,16 +7,45 @@ type AdjacencyList struct {
 	GraphType graphs.GraphType
 }
 
-func (adjacencyList AdjacencyList) GetAdjacentVerticesNodesForVertex(vertex int) []int {
-	return []int{1, 2}
+func (adjacencyList AdjacencyList) Init() {
+
 }
 
-func (adjacencyList AdjacencyList) GetWeightedOfEdge(vertexOne int, vertexTwo int) int {
-	return 1
+func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) error {
+
+	return nil
+}
+
+func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int]bool {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) GetOutgoingNodesForVertex(vertex int) map[int]bool {
+	return nil
+}
+
+func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
+	return nil
 }
 
 func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
-	return 1
+	return nil
 }
 
 func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
@@ -32,24 +54,4 @@ func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
 
 func (adjacencyList AdjacencyList) GetOutdegreeForVertex(vertex int) int {
 	return 1
-}
-
-func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) {
-	return 1
-}
-
-func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) {
-	return 1
-}
-
-func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) {
-
-}
-
-func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
-	return 1
-}
-
-func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
-	return graphs.DIRECTED
 }
