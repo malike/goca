@@ -1,8 +1,7 @@
 package sorting
 
-
 func Merge(left, right []int) []int {
-	merge := make([]int, 0, len(left) + len(right))
+	merge := make([]int, 0, len(left)+len(right))
 	for len(left) > 0 || len(right) > 0 {
 
 		if len(left) == 0 {
@@ -32,4 +31,3 @@ func MergeSort(array []int) []int {
 	right := MergeSort(array[n:])
 	return Merge(left, right)
 }
-

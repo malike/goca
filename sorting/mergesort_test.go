@@ -1,12 +1,16 @@
 package sorting
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestMergeSort_MergeSort(t *testing.T) {
-	actualArray := []int{9,5,7,3,6,2,1}
-	expectedArray := MergeSort(actualArray)
+	actualArray := []int{9, 5, 7, 3, 6, 2, 1}
+	sortedArray := MergeSort(actualArray)
+	expectedSort := []int{1, 2, 3, 5, 6, 7, 9}
 
-	if expectedArray[len(actualArray) - 1] != 9  {
-		t.Fatalf("Expected %v but got %v", expectedArray, actualArray)
+	if !reflect.DeepEqual(sortedArray, expectedSort) {
+		t.Fatalf("Expected %v but got %v", expectedSort, sortedArray)
 	}
 }
