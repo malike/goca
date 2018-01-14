@@ -1,9 +1,20 @@
 package adjancencylist
 
-import "testing"
+import (
+	"testing"
+	"goca/graphs"
+)
+
+var testAdjMapDirected = AdjacencyMap{4, graphs.DIRECTED}
+var testAdjMapUnDirected = AdjacencyMap{4, graphs.UNDIRECTED}
+
 
 func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
-
+	testAdjMapDirected.Init()
+	err := testAdjMapDirected.AddEdge(10, 2)
+	if err == nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
 }
 
 func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
