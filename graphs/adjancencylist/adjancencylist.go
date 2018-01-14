@@ -5,7 +5,7 @@ import (
 	"goca/graphs"
 )
 
-type AdjacencyMap struct {
+type AdjacencyList struct {
 	Vertices  int
 	GraphType graphs.GraphType
 }
@@ -16,7 +16,7 @@ type Node struct {
 }
 
 //Recursive method to add node to last availabel slot
-func (node Node) AddNode(value int)  {
+func (node Node) AddNode(value int) {
 
 	if node.Next == nil {
 		node.Next = &Node{Next: nil, Key: value}
@@ -27,8 +27,8 @@ func (node Node) AddNode(value int)  {
 
 var AdjList []Node
 
-func (adjacencyList AdjacencyMap) Init() {
-	AdjList := make([]Node, adjacencyList.Vertices)
+func (adjacencyList AdjacencyList) Init() {
+	AdjList = make([]Node, adjacencyList.Vertices)
 	i := 0
 	for i < adjacencyList.Vertices {
 		AdjList[i] = Node{}
@@ -36,56 +36,55 @@ func (adjacencyList AdjacencyMap) Init() {
 	}
 }
 
-func (adjacencyList AdjacencyMap) AddEdge(vertexOne int, vertexTwo int) error {
+func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return errors.New("Index out of bounds")
 	}
-	adjacentVertex := AdjList[vertexOne]
-	if adjacentVertex == (Node{}) {
+	if AdjList[vertexOne] == (Node{}) {
 		AdjList[vertexOne] = Node{Next: nil, Key: vertexTwo}
-		return nil
+	} else {
+		AdjList[vertexOne].AddNode(vertexTwo)
 	}
-	adjacentVertex.AddNode(vertexTwo)
 	return nil
 }
 
-func (adjacencyList AdjacencyMap) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error {
+func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error {
 	return nil
 }
 
-func (adjacencyList AdjacencyMap) RemoveEdge(vertexOne int, vertexTwo int) error {
+func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) error {
 
 	return nil
 }
 
-func (adjacencyList AdjacencyMap) HasEdge(vertexOne int, vertexTwo int) bool {
+func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 	return false
 }
 
-func (adjacencyList AdjacencyMap) GetGraphType() graphs.GraphType {
+func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
 	return adjacencyList.GraphType
 }
 
-func (adjacencyList AdjacencyMap) GetAdjacentNodesForVertex(vertex int) map[int]bool {
+func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int]bool {
 	return map[int]bool{}
 }
 
-func (adjacencyList AdjacencyMap) GetOutgoingNodesForVertex(vertex int) map[int]bool {
+func (adjacencyList AdjacencyList) GetOutgoingNodesForVertex(vertex int) map[int]bool {
 	return map[int]bool{}
 }
 
-func (adjacencyList AdjacencyMap) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
+func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int) int {
 	return 0
 }
 
-func (adjacencyList AdjacencyMap) GetNumberOfVertices() int {
+func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
 	return 0
 }
 
-func (adjacencyList AdjacencyMap) GetIndegreeForVertex(vertex int) int {
+func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
 	return 1
 }
 
-func (adjacencyList AdjacencyMap) GetOutdegreeForVertex(vertex int) int {
+func (adjacencyList AdjacencyList) GetOutdegreeForVertex(vertex int) int {
 	return 1
 }

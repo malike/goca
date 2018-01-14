@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-var testAdjMapDirected = AdjacencyMap{4, graphs.DIRECTED}
-var testAdjMapUnDirected = AdjacencyMap{4, graphs.UNDIRECTED}
+var testAdjMapDirected = AdjacencyList{4, graphs.DIRECTED}
+var testAdjMapUnDirected = AdjacencyList{4, graphs.UNDIRECTED}
 
 func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 	testAdjMapDirected.Init()
@@ -22,7 +22,8 @@ func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
 	if err != nil {
 		t.Error("Error adding edge")
 	}
-	if AdjList[2].Next.Key != 1 {
+	t.Log(AdjList)
+	if AdjList[2].Key != 1 {
 		t.Error("Data not found at index")
 	}
 }
