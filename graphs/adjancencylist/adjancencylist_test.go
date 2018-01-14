@@ -1,13 +1,12 @@
 package adjancencylist
 
 import (
-	"testing"
 	"goca/graphs"
+	"testing"
 )
 
 var testAdjMapDirected = AdjacencyMap{4, graphs.DIRECTED}
 var testAdjMapUnDirected = AdjacencyMap{4, graphs.UNDIRECTED}
-
 
 func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 	testAdjMapDirected.Init()
@@ -18,7 +17,14 @@ func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 }
 
 func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
-
+	testAdjMapDirected.Init()
+	err := testAdjMapDirected.AddEdge(2, 1)
+	if err != nil {
+		t.Error("Error adding edge")
+	}
+	if AdjList[2].Next.Key != 1 {
+		t.Error("Data not found at index")
+	}
 }
 
 func TestAdjacencyList_AddEdgeUndirected(t *testing.T) {

@@ -1,8 +1,8 @@
 package adjancencylist
 
 import (
-	"goca/graphs"
 	"errors"
+	"goca/graphs"
 )
 
 type AdjacencyMap struct {
@@ -11,15 +11,15 @@ type AdjacencyMap struct {
 }
 
 type Node struct {
-	Next  *Node
-	Key int
+	Next *Node
+	Key  int
 }
 
-//Recursive method to add node to last availabelslot in List
-func (node Node) AddNode(value int){
+//Recursive method to add node to last availabel slot
+func (node Node) AddNode(value int)  {
 
-	if node.Next == nil{
-		node.Next = &Node{Next:nil,Key:value}
+	if node.Next == nil {
+		node.Next = &Node{Next: nil, Key: value}
 		return
 	}
 	node.AddNode(value)
@@ -28,10 +28,10 @@ func (node Node) AddNode(value int){
 var AdjList []Node
 
 func (adjacencyList AdjacencyMap) Init() {
-	AdjList := make([]Node,adjacencyList.Vertices)
+	AdjList := make([]Node, adjacencyList.Vertices)
 	i := 0
 	for i < adjacencyList.Vertices {
-		AdjList[i] = Node{nil,i}
+		AdjList[i] = Node{}
 		i++
 	}
 }
@@ -41,6 +41,10 @@ func (adjacencyList AdjacencyMap) AddEdge(vertexOne int, vertexTwo int) error {
 		return errors.New("Index out of bounds")
 	}
 	adjacentVertex := AdjList[vertexOne]
+	if adjacentVertex == (Node{}) {
+		AdjList[vertexOne] = Node{Next: nil, Key: vertexTwo}
+		return nil
+	}
 	adjacentVertex.AddNode(vertexTwo)
 	return nil
 }
