@@ -18,12 +18,17 @@ func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 
 func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
 	testAdjMapDirected.Init()
-	err := testAdjMapDirected.AddEdge(2, 1)
+	testAdjMapDirected.AddEdge(2, 1)
+	err := testAdjMapDirected.AddEdge(2, 3)
 	if err != nil {
 		t.Error("Error adding edge")
 	}
 	t.Log(AdjList)
+	t.Log(AdjList[2])
 	if AdjList[2].Key != 1 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[2].Next.Key != 3 {
 		t.Error("Data not found at index")
 	}
 }

@@ -15,14 +15,15 @@ type Node struct {
 	Key  int
 }
 
-//Recursive method to add node to last availabel slot
-func (node Node) AddNode(value int) {
-
-	if node.Next == nil {
-		node.Next = &Node{Next: nil, Key: value}
-		return
+//Recursive method to add node to last available slot
+func (node Node) AddNode(value int) Node {
+	if (Node{}) == node {
+		node := Node{Next: &Node{}, Key: value}
+		return node
 	}
-	node.AddNode(value)
+	node.Next.AddNode(value)
+
+	return nil
 }
 
 var AdjList []Node
@@ -40,11 +41,13 @@ func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return errors.New("Index out of bounds")
 	}
-	if AdjList[vertexOne] == (Node{}) {
-		AdjList[vertexOne] = Node{Next: nil, Key: vertexTwo}
-	} else {
-		AdjList[vertexOne].AddNode(vertexTwo)
-	}
+	//if AdjList[vertexOne] == (Node{}) {
+	//	AdjList[vertexOne] = Node{Next: &Node{}, Key: vertexTwo}
+	//} else {
+	node := AdjList[vertexOne].AddNode(vertexTwo)
+	AdjList[vertexOne] = node
+
+	//}
 	return nil
 }
 
