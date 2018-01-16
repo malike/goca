@@ -61,9 +61,9 @@ func TestAdjacencyList_AddEdgeWeightDirectedGreaterThanVertex(t *testing.T) {
 }
 
 func TestAdjacencyList_AddEdgeWithWeightDirected(t *testing.T) {
-	testAdjListUnDirected.Init()
-	testAdjListUnDirected.AddEdgeWithWeight(2, 1, -3)
-	err := testAdjListUnDirected.AddEdgeWithWeight(2, 3, 6)
+	testAdjListDirected.Init()
+	testAdjListDirected.AddEdgeWithWeight(2, 1, -3)
+	err := testAdjListDirected.AddEdgeWithWeight(2, 3, 6)
 	if err != nil {
 		t.Error("Error adding edge")
 	}
@@ -73,16 +73,40 @@ func TestAdjacencyList_AddEdgeWithWeightDirected(t *testing.T) {
 	if AdjList[2].Next.Weight != 6 {
 		t.Errorf("Data not found at index, %d", AdjList[2].Next.Weight)
 	}
-	t.Errorf("Data not found at index, %v", AdjList[2])
-	t.Errorf("Data not found at index, %v", AdjList[2].Next)
 }
 
 func TestAdjacencyList_AddEdgeWithWeightUnDirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdgeWithWeight(2, 1, -3)
+	err := testAdjListUnDirected.AddEdgeWithWeight(2, 3, 6)
+	if err != nil {
+		t.Error("Error adding edge")
+	}
+	if AdjList[2].Weight != -3 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[1].Weight != -3 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[2].Next.Weight != 6 {
+		t.Errorf("Data not found at index, %d", AdjList[2].Next.Weight)
+	}
+	if AdjList[3].Weight != 6 {
+		t.Errorf("Data not found at index, %d", AdjList[2].Next.Weight)
+	}
 }
 
 func TestAdjacencyList_RemoveEdgeDirected(t *testing.T) {
-
+	testAdjListDirected.Init()
+	testAdjListDirected.AddEdge(2, 1)
+	testAdjListDirected.AddEdge(2, 3)
+	err := testAdjListDirected.RemoveEdge(2, 1)
+	if err != nil {
+		t.Error("Error removing edge")
+	}
+	if AdjList[2].Key == 1 && AdjList[2].Key != 3 && AdjList[2].Next != (&Node{}) {
+		t.Errorf("Data not removed at index , data is %d instead of 3", AdjList[2].Key)
+	}
 }
 
 func TestAdjacencyList_RemoveEdgeUnDirected(t *testing.T) {

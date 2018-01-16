@@ -78,7 +78,9 @@ func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo in
 }
 
 func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) error {
-
+	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
+		return errors.New("Index out of bounds")
+	}
 	return nil
 }
 
