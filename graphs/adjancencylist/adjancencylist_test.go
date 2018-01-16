@@ -53,11 +53,28 @@ func TestAdjacencyList_AddEdgeUndirected(t *testing.T) {
 }
 
 func TestAdjacencyList_AddEdgeWeightDirectedGreaterThanVertex(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	err := testAdjListUnDirected.AddEdgeWithWeight(10, 7, -3)
+	if err == nil {
+		t.Error("Index was out of bounds it should have failed")
+	}
 }
 
 func TestAdjacencyList_AddEdgeWithWeightDirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdgeWithWeight(2, 1, -3)
+	err := testAdjListUnDirected.AddEdgeWithWeight(2, 3, 6)
+	if err != nil {
+		t.Error("Error adding edge")
+	}
+	if AdjList[2].Weight != -3 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[2].Next.Weight != 6 {
+		t.Errorf("Data not found at index, %d", AdjList[2].Next.Weight)
+	}
+	t.Errorf("Data not found at index, %v", AdjList[2])
+	t.Errorf("Data not found at index, %v", AdjList[2].Next)
 }
 
 func TestAdjacencyList_AddEdgeWithWeightUnDirected(t *testing.T) {

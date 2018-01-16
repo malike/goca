@@ -11,8 +11,9 @@ type AdjacencyList struct {
 }
 
 type Node struct {
-	Next *Node
-	Key  int
+	Next   *Node
+	Weight int
+	Key    int
 }
 
 //Recursive method to add node to last available slot
@@ -23,6 +24,18 @@ func (node Node) AddNode(value int) Node {
 		return node
 	}
 	nd := n.AddNode(value)
+	node.Next = &nd
+	return node
+}
+
+//Recursive method to append with weight
+func (node Node) AddNodeWithWeight(value int, weight int) Node {
+	n := node.Next
+	if (Node{}) == node {
+		node := Node{Next: &Node{}, Key: value, Weight: weight}
+		return node
+	}
+	nd := n.AddNodeWithWeight(value, weight)
 	node.Next = &nd
 	return node
 }
@@ -52,6 +65,15 @@ func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 }
 
 func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo int, weight int) error {
+	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
+		return errors.New("Index out of bounds")
+	}
+	node := AdjList[vertexOne].AddNodeWithWeight(vertexTwo, weight)
+	AdjList[vertexOne] = node
+	if adjacencyList.GraphType == graphs.UNDIRECTED {
+		node := AdjList[vertexTwo].AddNodeWithWeight(vertexOne, weight)
+		AdjList[vertexTwo] = node
+	}
 	return nil
 }
 
