@@ -42,12 +42,12 @@ func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return errors.New("Index out of bounds")
 	}
-	//if AdjList[vertexOne] == (Node{}) {
-	//	AdjList[vertexOne] = Node{Next: &Node{}, Key: vertexTwo}
-	//} else {
 	node := AdjList[vertexOne].AddNode(vertexTwo)
 	AdjList[vertexOne] = node
-	//}
+	if adjacencyList.GraphType == graphs.UNDIRECTED {
+		node := AdjList[vertexTwo].AddNode(vertexOne)
+		AdjList[vertexTwo] = node
+	}
 	return nil
 }
 

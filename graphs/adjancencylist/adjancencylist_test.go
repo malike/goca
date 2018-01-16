@@ -5,21 +5,21 @@ import (
 	"testing"
 )
 
-var testAdjMapDirected = AdjacencyList{4, graphs.DIRECTED}
-var testAdjMapUnDirected = AdjacencyList{4, graphs.UNDIRECTED}
+var testAdjListDirected = AdjacencyList{4, graphs.DIRECTED}
+var testAdjListUnDirected = AdjacencyList{4, graphs.UNDIRECTED}
 
 func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
-	testAdjMapDirected.Init()
-	err := testAdjMapDirected.AddEdge(10, 2)
+	testAdjListDirected.Init()
+	err := testAdjListDirected.AddEdge(10, 2)
 	if err == nil {
 		t.Error("Index was out of bounds it should have failed")
 	}
 }
 
 func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
-	testAdjMapDirected.Init()
-	testAdjMapDirected.AddEdge(2, 1)
-	err := testAdjMapDirected.AddEdge(2, 3)
+	testAdjListDirected.Init()
+	testAdjListDirected.AddEdge(2, 1)
+	err := testAdjListDirected.AddEdge(2, 3)
 	if err != nil {
 		t.Error("Error adding edge")
 	}
@@ -32,7 +32,24 @@ func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
 }
 
 func TestAdjacencyList_AddEdgeUndirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdge(2, 1)
+	err := testAdjListUnDirected.AddEdge(2, 3)
+	if err != nil {
+		t.Error("Error adding edge")
+	}
+	if AdjList[2].Key != 1 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[2].Next.Key != 3 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[1].Key != 2 {
+		t.Error("Data not found at index")
+	}
+	if AdjList[3].Key != 2 {
+		t.Error("Data not found at index")
+	}
 }
 
 func TestAdjacencyList_AddEdgeWeightDirectedGreaterThanVertex(t *testing.T) {
