@@ -17,13 +17,14 @@ type Node struct {
 
 //Recursive method to add node to last available slot
 func (node Node) AddNode(value int) Node {
+	n := node.Next
 	if (Node{}) == node {
 		node := Node{Next: &Node{}, Key: value}
 		return node
 	}
-	node.Next.AddNode(value)
-
-	return nil
+	nd := n.AddNode(value)
+	node.Next = &nd
+	return node
 }
 
 var AdjList []Node
@@ -46,7 +47,6 @@ func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 	//} else {
 	node := AdjList[vertexOne].AddNode(vertexTwo)
 	AdjList[vertexOne] = node
-
 	//}
 	return nil
 }

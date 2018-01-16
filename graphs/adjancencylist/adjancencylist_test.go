@@ -23,8 +23,6 @@ func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
 	if err != nil {
 		t.Error("Error adding edge")
 	}
-	t.Log(AdjList)
-	t.Log(AdjList[2])
 	if AdjList[2].Key != 1 {
 		t.Error("Data not found at index")
 	}
