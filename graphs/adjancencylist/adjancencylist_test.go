@@ -122,7 +122,10 @@ func TestAdjacencyList_HasEdgeUndirected(t *testing.T) {
 }
 
 func TestAdjacencyList_GetGraphType(t *testing.T) {
-
+	testAdjListDirected.Init()
+	if testAdjListDirected.GraphType != testAdjListDirected.GetGraphType() {
+		t.Error("GraphType not matching")
+	}
 }
 
 func TestAdjacencyList_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T) {
