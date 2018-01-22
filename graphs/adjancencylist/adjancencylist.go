@@ -81,10 +81,27 @@ func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) erro
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return errors.New("Index out of bounds")
 	}
+
 	return nil
 }
 
 func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
+	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
+		return false
+	}
+	nodeAdj := AdjList[vertexOne]
+	if nodeAdj == (Node{}){
+		return false
+	}
+	 node := nodeAdj.Next
+	for( node != (&Node{}) ){
+
+		if(node.Key == vertexTwo){
+			return true
+		}
+		node = &node.Next
+	}
+
 	return false
 }
 
