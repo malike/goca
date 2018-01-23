@@ -93,13 +93,16 @@ func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 	if nodeAdj.Key == vertexTwo {
 		return true
 	}
+	if nodeAdj == (Node{}) {
+		return false
+	}
 	node := nodeAdj.Next
 	for (&Node{}) != node && node != nil {
 		key := node
 		if key.Key == vertexTwo {
 			return true
 		}
-		node = node.Next
+		node = key.Next
 	}
 	return false
 }

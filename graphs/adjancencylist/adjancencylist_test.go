@@ -116,7 +116,9 @@ func TestAdjacencyList_RemoveEdgeUnDirected(t *testing.T) {
 func TestAdjacencyList_HasEdgeDirected(t *testing.T) {
 	testAdjListDirected.Init()
 	testAdjListDirected.AddEdge(2, 1)
-	if !testAdjListDirected.HasEdge(2, 1) {
+	testAdjListDirected.AddEdge(2, 3)
+	testAdjListDirected.AddEdge(2, 4)
+	if !testAdjListDirected.HasEdge(2, 4) {
 		t.Error("No relationship, when there should be one")
 	}
 	if testAdjListDirected.HasEdge(1, 2) {
