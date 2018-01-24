@@ -3,6 +3,7 @@ package adjancencylist
 import (
 	"errors"
 	"goca/graphs"
+	"fmt"
 )
 
 type AdjacencyList struct {
@@ -38,6 +39,18 @@ func (node Node) AddNodeWithWeight(value int, weight int) Node {
 	nd := n.AddNodeWithWeight(value, weight)
 	node.Next = &nd
 	return node
+}
+
+func (node Node) FindNextNode(key int) (*Node,error){
+	n := node
+	if n == (Node{})  {
+		return &Node{},errors.New("Node not found")
+	}
+	if n.Key == key{
+		return &n,nil
+	}
+	nd := n.Next
+	return nd.FindNextNode(key)
 }
 
 var AdjList []Node
@@ -90,20 +103,12 @@ func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 		return false
 	}
 	nodeAdj := AdjList[vertexOne]
-	if nodeAdj.Key == vertexTwo {
+	node,_ := nodeAdj.FindNextNode(vertexTwo)
+	if (node != nil && node != &(Node{}))&&node.Key == vertexTwo{
+		fmt.Printf("Node %d ",node)
 		return true
 	}
-	if nodeAdj == (Node{}) {
-		return false
-	}
-	node := nodeAdj.Next
-	for (&Node{}) != node && node != nil {
-		key := node
-		if key.Key == vertexTwo {
-			return true
-		}
-		node = key.Next
-	}
+	fmt.Printf("Node %d ",node)
 	return false
 }
 
