@@ -3,7 +3,6 @@ package adjancencylist
 import (
 	"errors"
 	"goca/graphs"
-	"fmt"
 )
 
 type AdjacencyList struct {
@@ -20,9 +19,9 @@ type Node struct {
 //Recursive method to add node to last available slot
 func (node Node) AddNode(value int) Node {
 	n := node.Next
-	if (Node{}) == node {
-		node := Node{Next: &Node{}, Key: value}
-		return node
+	if n == nil {
+		newnode := Node{Next: &Node{}, Key: value}
+		return newnode
 	}
 	nd := n.AddNode(value)
 	node.Next = &nd
@@ -32,9 +31,9 @@ func (node Node) AddNode(value int) Node {
 //Recursive method to append with weight
 func (node Node) AddNodeWithWeight(value int, weight int) Node {
 	n := node.Next
-	if (Node{}) == node {
-		node := Node{Next: &Node{}, Key: value, Weight: weight}
-		return node
+	if n == nil {
+		newnode := Node{Next: &Node{}, Key: value, Weight: weight}
+		return newnode
 	}
 	nd := n.AddNodeWithWeight(value, weight)
 	node.Next = &nd
@@ -42,12 +41,12 @@ func (node Node) AddNodeWithWeight(value int, weight int) Node {
 }
 
 func (node Node) FindNextNode(key int) (*Node,error){
-	n := node
-	if n == (Node{})  {
-		return &Node{},errors.New("Node not found")
+	n := node.Next
+	if n == nil  {
+		return nil,errors.New("Node not found")
 	}
 	if n.Key == key{
-		return &n,nil
+		return n,nil
 	}
 	nd := n.Next
 	return nd.FindNextNode(key)
@@ -103,12 +102,13 @@ func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 		return false
 	}
 	nodeAdj := AdjList[vertexOne]
+	if nodeAdj == (Node{}){
+		return false
+	}
 	node,_ := nodeAdj.FindNextNode(vertexTwo)
-	if (node != nil && node != &(Node{}))&&node.Key == vertexTwo{
-		fmt.Printf("Node %d ",node)
+	if node != nil && node.Key == vertexTwo{
 		return true
 	}
-	fmt.Printf("Node %d ",node)
 	return false
 }
 

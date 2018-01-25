@@ -34,9 +34,10 @@ func TestAdjacencyList_AddEdgeDirected(t *testing.T) {
 func TestAdjacencyList_AddEdgeUndirected(t *testing.T) {
 	testAdjListUnDirected.Init()
 	testAdjListUnDirected.AddEdge(2, 1)
-	err := testAdjListUnDirected.AddEdge(2, 3)
+	testAdjListUnDirected.AddEdge(2, 3)
+	err :=testAdjListUnDirected.AddEdge(2, 0)
 	if err != nil {
-		t.Error("Error adding edge")
+		t.Error("Error adding edge "+err.Error())
 	}
 	if AdjList[2].Key != 1 {
 		t.Error("Data not found at index")
@@ -117,8 +118,8 @@ func TestAdjacencyList_HasEdgeDirected(t *testing.T) {
 	testAdjListDirected.Init()
 	testAdjListDirected.AddEdge(2, 1)
 	testAdjListDirected.AddEdge(2, 3)
-	testAdjListDirected.AddEdge(2, 4)
-	if !testAdjListDirected.HasEdge(2, 4) {
+	testAdjListDirected.AddEdge(2, 0)
+	if !testAdjListDirected.HasEdge(2, 0) {
 		t.Error("No relationship, when there should be one")
 	}
 	if testAdjListDirected.HasEdge(1, 2) {
@@ -127,7 +128,16 @@ func TestAdjacencyList_HasEdgeDirected(t *testing.T) {
 }
 
 func TestAdjacencyList_HasEdgeUndirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdge(2, 1)
+	testAdjListUnDirected.AddEdge(2, 3)
+	testAdjListUnDirected.AddEdge(2, 0)
+	if !testAdjListUnDirected.HasEdge(2, 0) {
+		t.Error("No relationship, when there should be one")
+	}
+	if !testAdjListUnDirected.HasEdge(0, 2) {
+		t.Error("No relationship, when there should be one")
+	}
 }
 
 func TestAdjacencyList_GetGraphType(t *testing.T) {
