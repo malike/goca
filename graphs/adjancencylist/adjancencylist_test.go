@@ -135,7 +135,7 @@ func TestAdjacencyList_HasEdgeUndirected(t *testing.T) {
 	if !testAdjListUnDirected.HasEdge(2, 0) {
 		t.Error("No relationship, when there should be one")
 	}
-	if !testAdjListUnDirected.HasEdge(0, 2) {
+	if !testAdjListUnDirected.HasEdge(3, 2) {
 		t.Error("No relationship, when there should be one")
 	}
 }

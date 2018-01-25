@@ -41,12 +41,12 @@ func (node Node) AddNodeWithWeight(value int, weight int) Node {
 }
 
 func (node Node) FindNextNode(key int) (*Node, error) {
-	n := node.Next
-	if n == nil {
-		return nil, errors.New("Node not found")
+	n := node
+	if n == (Node{}) {
+		return &Node{}, errors.New("Node not found")
 	}
 	if n.Key == key {
-		return n, nil
+		return &n, nil
 	}
 	nd := n.Next
 	return nd.FindNextNode(key)
