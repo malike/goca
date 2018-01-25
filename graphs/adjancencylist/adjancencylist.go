@@ -40,13 +40,13 @@ func (node Node) AddNodeWithWeight(value int, weight int) Node {
 	return node
 }
 
-func (node Node) FindNextNode(key int) (*Node,error){
+func (node Node) FindNextNode(key int) (*Node, error) {
 	n := node.Next
-	if n == nil  {
-		return nil,errors.New("Node not found")
+	if n == nil {
+		return nil, errors.New("Node not found")
 	}
-	if n.Key == key{
-		return n,nil
+	if n.Key == key {
+		return n, nil
 	}
 	nd := n.Next
 	return nd.FindNextNode(key)
@@ -102,11 +102,11 @@ func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 		return false
 	}
 	nodeAdj := AdjList[vertexOne]
-	if nodeAdj == (Node{}){
+	if nodeAdj == (Node{}) {
 		return false
 	}
-	node,_ := nodeAdj.FindNextNode(vertexTwo)
-	if node != nil && node.Key == vertexTwo{
+	node, _ := nodeAdj.FindNextNode(vertexTwo)
+	if node != nil && node.Key == vertexTwo {
 		return true
 	}
 	return false

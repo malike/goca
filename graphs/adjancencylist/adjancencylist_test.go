@@ -35,9 +35,9 @@ func TestAdjacencyList_AddEdgeUndirected(t *testing.T) {
 	testAdjListUnDirected.Init()
 	testAdjListUnDirected.AddEdge(2, 1)
 	testAdjListUnDirected.AddEdge(2, 3)
-	err :=testAdjListUnDirected.AddEdge(2, 0)
+	err := testAdjListUnDirected.AddEdge(2, 0)
 	if err != nil {
-		t.Error("Error adding edge "+err.Error())
+		t.Error("Error adding edge " + err.Error())
 	}
 	if AdjList[2].Key != 1 {
 		t.Error("Data not found at index")
