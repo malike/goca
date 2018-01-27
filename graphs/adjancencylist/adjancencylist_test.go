@@ -177,11 +177,13 @@ func TestAdjacencyList_GetWeightOfEdgeUndirected(t *testing.T) {
 	if weight != -3 {
 		t.Error("Data not found at index")
 	}
-
 }
 
 func TestAdjacencyList_GetNumberOfVertices(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	if testAdjListUnDirected.GetNumberOfVertices() != testAdjListUnDirected.Vertices {
+		t.Error("Vertex count doesn't match")
+	}
 }
 
 func TestAdjacencyList_GetIndegreeForVertex(t *testing.T) {

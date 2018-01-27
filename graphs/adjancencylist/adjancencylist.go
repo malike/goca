@@ -151,7 +151,7 @@ func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int)
 }
 
 func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
-	return 0
+	return adjacencyList.Vertices
 }
 
 func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {

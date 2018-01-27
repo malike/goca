@@ -109,7 +109,3 @@ func (adjacencyMatrix AdjacencyMatrix) GetIndegreeForVertex(vertex int) int {
 	}
 	return indegree
 }
-
-func (adjacencyMatrix AdjacencyMatrix) GetOutdegreeForVertex(vertex int) int {
-	return 1
-}
