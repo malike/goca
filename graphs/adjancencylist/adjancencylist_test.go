@@ -162,10 +162,21 @@ func TestAdjacencyList_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T)
 }
 
 func TestAdjacencyList_GetWeightOfEdgeDirected(t *testing.T) {
-
+	testAdjListDirected.Init()
+	testAdjListDirected.AddEdgeWithWeight(2, 1, -3)
+	weight,_ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
+	if weight != -3 {
+		t.Error("Data not found at index")
+	}
 }
 
 func TestAdjacencyList_GetWeightOfEdgeUndirected(t *testing.T) {
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdgeWithWeight(2, 1, -3)
+	weight,_ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
+	if weight != -3 {
+		t.Error("Data not found at index")
+	}
 
 }
 
