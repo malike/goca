@@ -117,7 +117,18 @@ func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
 }
 
 func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int]bool {
-	return map[int]bool{}
+	if vertex >= adjacencyList.Vertices || vertex < 0 {
+		return map[int]bool{}
+	}
+	nodeAdj := AdjList[vertex]
+	nextNode := &nodeAdj
+	nodes := map[int]bool{}
+	for nextNode != (&Node{}) && nextNode != nil {
+		nodes[nextNode.Key]=true
+		nextNode = nextNode.Next
+	}
+	return nodes
+
 }
 
 func (adjacencyList AdjacencyList) GetOutgoingNodesForVertex(vertex int) map[int]bool {
@@ -133,9 +144,5 @@ func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
 }
 
 func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
-	return 1
-}
-
-func (adjacencyList AdjacencyList) GetOutdegreeForVertex(vertex int) int {
 	return 1
 }

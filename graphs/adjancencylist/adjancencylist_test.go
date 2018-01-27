@@ -148,7 +148,17 @@ func TestAdjacencyList_GetGraphType(t *testing.T) {
 }
 
 func TestAdjacencyList_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdge(2, 1)
+	testAdjListUnDirected.AddEdge(2, 0)
+	testAdjListUnDirected.AddEdge(1, 3)
+	testAdjListUnDirected.AddEdge(2, 2)
+	testAdjListUnDirected.AddEdge(2, 3)
+	nodes := testAdjListUnDirected.GetAdjacentNodesForVertex(2)
+	if len(nodes) != 4 {
+		t.Errorf("Nodes size not matching. Size %d instead of %d. %v", len(nodes), 4, nodes)
+	}
+	t.Logf("Nodes size matched. %v", nodes)
 }
 
 func TestAdjacencyList_GetWeightOfEdgeDirected(t *testing.T) {
@@ -164,9 +174,5 @@ func TestAdjacencyList_GetNumberOfVertices(t *testing.T) {
 }
 
 func TestAdjacencyList_GetIndegreeForVertex(t *testing.T) {
-
-}
-
-func TestAdjacencyList_GetOutdegreeForVertex(t *testing.T) {
 
 }

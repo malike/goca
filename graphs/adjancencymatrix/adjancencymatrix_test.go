@@ -198,7 +198,3 @@ func TestAdjacencyMatrix_GetIndegreeForVertex(t *testing.T) {
 		t.Errorf("Nodes size not matching.")
 	}
 }
-
-func TestAdjacencyMatrix_GetOutdegreeForVertex(t *testing.T) {
-
-}

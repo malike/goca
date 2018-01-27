@@ -29,6 +29,4 @@ type Graphs interface {
 	GetNumberOfVertices() int
 
 	GetIndegreeForVertex(vertex int) int
-
-	GetOutdegreeForVertex(vertex int) int
 }
