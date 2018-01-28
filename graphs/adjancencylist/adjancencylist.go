@@ -155,11 +155,11 @@ func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
 		return 0
 	}
 	nodeAdj := AdjList[vertex]
-	nextNode := &nodeAdj
+	nextNode := nodeAdj.Next
 	length := 0
 	for nextNode != (&Node{}) && nextNode != nil {
-		nextNode = nextNode.Next
 		length+=1
+		nextNode = nextNode.Next
 	}
 	return length
 }
