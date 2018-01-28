@@ -131,10 +131,6 @@ func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int
 
 }
 
-func (adjacencyList AdjacencyList) GetOutgoingNodesForVertex(vertex int) map[int]bool {
-	return map[int]bool{}
-}
-
 func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int) (int,error) {
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return 0,errors.New("Error getting weight for vertex")
@@ -155,5 +151,15 @@ func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
 }
 
 func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
-	return 1
+	if vertex >= adjacencyList.Vertices || vertex < 0 {
+		return 0
+	}
+	nodeAdj := AdjList[vertex]
+	nextNode := &nodeAdj
+	length := 0
+	for nextNode != (&Node{}) && nextNode != nil {
+		nextNode = nextNode.Next
+		length+=1
+	}
+	return length
 }

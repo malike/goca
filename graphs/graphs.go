@@ -22,8 +22,6 @@ type Graphs interface {
 
 	GetAdjacentNodesForVertex(vertex int) map[int]bool
 
-	GetOutgoingNodesForVertex(vertex int) map[int]bool
-
 	GetWeightOfEdge(vertexOne int, vertexTwo int) (int,error)
 
 	GetNumberOfVertices() int

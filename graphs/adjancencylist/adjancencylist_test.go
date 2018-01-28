@@ -187,5 +187,13 @@ func TestAdjacencyList_GetNumberOfVertices(t *testing.T) {
 }
 
 func TestAdjacencyList_GetIndegreeForVertex(t *testing.T) {
-
+	testAdjListDirected.Init()
+	testAdjListDirected.AddEdge(2, 1)
+	testAdjListDirected.AddEdge(2, 0)
+	testAdjListDirected.AddEdge(1, 1)
+	testAdjListDirected.AddEdge(2, 3)
+	testAdjListDirected.AddEdge(0, 3)
+	if testAdjListDirected.GetIndegreeForVertex(2) != 3 {
+		t.Errorf("Nodes size not matching. Expected %d but is %d ",3,testAdjListDirected.GetIndegreeForVertex(2))
+	}
 }
