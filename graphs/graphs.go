@@ -22,7 +22,7 @@ type Graphs interface {
 
 	GetAdjacentNodesForVertex(vertex int) map[int]bool
 
-	GetWeightOfEdge(vertexOne int, vertexTwo int) (int,error)
+	GetWeightOfEdge(vertexOne int, vertexTwo int) (int, error)
 
 	GetNumberOfVertices() int
 

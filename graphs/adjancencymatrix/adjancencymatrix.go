@@ -84,11 +84,11 @@ func (adjacencyMatrix AdjacencyMatrix) GetAdjacentNodesForVertex(vertex int) map
 	return adjacencyMatrixVertices
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) (int,error) {
+func (adjacencyMatrix AdjacencyMatrix) GetWeightOfEdge(vertexOne int, vertexTwo int) (int, error) {
 	if vertexOne >= adjacencyMatrix.Vertices || vertexTwo >= adjacencyMatrix.Vertices || vertexOne < 0 || vertexTwo < 0 {
-		return 0,errors.New("Error getting weight for vertex")
+		return 0, errors.New("Error getting weight for vertex")
 	}
-	return AdjMatrix[vertexOne][vertexTwo],nil
+	return AdjMatrix[vertexOne][vertexTwo], nil
 }
 
 func (adjacencyMatrix AdjacencyMatrix) GetNumberOfVertices() int {

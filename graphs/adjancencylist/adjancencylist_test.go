@@ -101,17 +101,31 @@ func TestAdjacencyList_RemoveEdgeDirected(t *testing.T) {
 	testAdjListDirected.Init()
 	testAdjListDirected.AddEdge(2, 1)
 	testAdjListDirected.AddEdge(2, 3)
-	err := testAdjListDirected.RemoveEdge(2, 1)
+	testAdjListDirected.AddEdge(2, 0)
+	err := testAdjListDirected.RemoveEdge(2, 3)
 	if err != nil {
 		t.Error("Error removing edge")
 	}
-	if AdjList[2].Key == 1 && AdjList[2].Key != 3 && AdjList[2].Next != (&Node{}) {
-		t.Errorf("Data not removed at index , data is %d instead of 3", AdjList[2].Key)
+	if AdjList[2].Key != 1 && AdjList[2].Next.Key != 0 && AdjList[2].Next.Next != (&Node{}) {
+		t.Errorf("Data not removed at index , data is %d instead of 0, %v", AdjList[2].Next.Key, AdjList)
 	}
 }
 
 func TestAdjacencyList_RemoveEdgeUnDirected(t *testing.T) {
-
+	testAdjListUnDirected.Init()
+	testAdjListUnDirected.AddEdge(2, 1)
+	testAdjListUnDirected.AddEdge(2, 3)
+	testAdjListUnDirected.AddEdge(2, 0)
+	err := testAdjListUnDirected.RemoveEdge(2, 3)
+	if err != nil {
+		t.Error("Error removing edge")
+	}
+	if testAdjListUnDirected.HasEdge(2, 3) {
+		t.Error("There's still a relationship between nodes")
+	}
+	if AdjList[2].Key != 1 && AdjList[2].Next.Key != 0 && AdjList[2].Next.Next != (&Node{}) {
+		t.Errorf("Data not removed at index , data is %d instead of 0, %v", AdjList[2].Next.Key, AdjList)
+	}
 }
 
 func TestAdjacencyList_HasEdgeDirected(t *testing.T) {
@@ -164,7 +178,7 @@ func TestAdjacencyList_GetAdjacentVerticesNodesForVertexUndirected(t *testing.T)
 func TestAdjacencyList_GetWeightOfEdgeDirected(t *testing.T) {
 	testAdjListDirected.Init()
 	testAdjListDirected.AddEdgeWithWeight(2, 1, -3)
-	weight,_ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
+	weight, _ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
 	if weight != -3 {
 		t.Error("Data not found at index")
 	}
@@ -173,7 +187,7 @@ func TestAdjacencyList_GetWeightOfEdgeDirected(t *testing.T) {
 func TestAdjacencyList_GetWeightOfEdgeUndirected(t *testing.T) {
 	testAdjListUnDirected.Init()
 	testAdjListUnDirected.AddEdgeWithWeight(2, 1, -3)
-	weight,_ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
+	weight, _ := testAdjListUnDirected.GetWeightOfEdge(2, 1)
 	if weight != -3 {
 		t.Error("Data not found at index")
 	}
@@ -194,6 +208,6 @@ func TestAdjacencyList_GetIndegreeForVertex(t *testing.T) {
 	testAdjListDirected.AddEdge(2, 3)
 	testAdjListDirected.AddEdge(0, 3)
 	if testAdjListDirected.GetIndegreeForVertex(2) != 3 {
-		t.Errorf("Nodes size not matching. Expected %d but is %d ",3,testAdjListDirected.GetIndegreeForVertex(2))
+		t.Errorf("Nodes size not matching. Expected %d but is %d ", 3, testAdjListDirected.GetIndegreeForVertex(2))
 	}
 }

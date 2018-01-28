@@ -93,7 +93,26 @@ func (adjacencyList AdjacencyList) RemoveEdge(vertexOne int, vertexTwo int) erro
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
 		return errors.New("Index out of bounds")
 	}
-
+	nodeAdj := AdjList[vertexOne]
+	if nodeAdj == (Node{}) {
+		return errors.New("Node not found")
+	}
+	nextNode := &nodeAdj
+	newNodes := Node{}
+	for nextNode != (&Node{}) && nextNode != nil {
+		if nextNode.Key != vertexTwo {
+			newNodes.Next = nextNode
+			newNodes.Key = nextNode.Key
+			newNodes.Weight = nextNode.Weight
+			nextNode = nextNode.Next
+		} else {
+			newNodes.Next = nextNode.Next
+			newNodes.Key = nextNode.Next.Key
+			newNodes.Weight = nextNode.Next.Weight
+			AdjList[vertexOne] = newNodes
+			return nil
+		}
+	}
 	return nil
 }
 
@@ -131,19 +150,19 @@ func (adjacencyList AdjacencyList) GetAdjacentNodesForVertex(vertex int) map[int
 
 }
 
-func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int) (int,error) {
+func (adjacencyList AdjacencyList) GetWeightOfEdge(vertexOne int, vertexTwo int) (int, error) {
 	if vertexOne >= adjacencyList.Vertices || vertexTwo >= adjacencyList.Vertices || vertexOne < 0 || vertexTwo < 0 {
-		return 0,errors.New("Error getting weight for vertex")
+		return 0, errors.New("Error getting weight for vertex")
 	}
 	nodeAdj := AdjList[vertexOne]
 	if nodeAdj == (Node{}) {
-		return 0,errors.New("Error getting weight for vertex")
+		return 0, errors.New("Error getting weight for vertex")
 	}
 	node, _ := nodeAdj.FindNextNode(vertexTwo)
 	if node != nil && node.Key == vertexTwo {
-		return nodeAdj.Weight,nil
+		return nodeAdj.Weight, nil
 	}
-	return 0,errors.New("Error getting weight for vertex")
+	return 0, errors.New("Error getting weight for vertex")
 }
 
 func (adjacencyList AdjacencyList) GetNumberOfVertices() int {
@@ -158,7 +177,7 @@ func (adjacencyList AdjacencyList) GetIndegreeForVertex(vertex int) int {
 	nextNode := nodeAdj.Next
 	length := 0
 	for nextNode != (&Node{}) && nextNode != nil {
-		length+=1
+		length += 1
 		nextNode = nextNode.Next
 	}
 	return length
