@@ -17,6 +17,13 @@ What are graphs?
 
 ***ii. Use Cases***
 
+#### Topological Sort
+
+***i. Description***
+
+***ii. Use Cases***
+
+
 #### Djikstra
 
 ***i. Description***
