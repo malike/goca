@@ -1,28 +1,26 @@
 package graphs
 
-import (
-	"log"
-	"fmt"
-)
+import "fmt"
 
-func DFS(graph Graphs,root int) string {
+func DFT(graph Graphs) []int {
 	visited := map[int]bool{}
-	current := root
-	dfsString := ""
-	dfs(graph,visited,current,dfsString)
-	return dfsString
+	dftArrayOrdered := make([]int, graph.GetNumberOfVertices())
+	for i := 0; i < graph.GetNumberOfVertices(); i++ {
+		dft(graph, visited, i, dftArrayOrdered)
+	}
+	return dftArrayOrdered
 }
 
-
-func dfs(graphs Graphs,visited map[int]bool, current int ,dfsString string)  {
-	if visited[current]{
+func dft(graphs Graphs, visited map[int]bool, current int, dftArrayOrdered []int) {
+	if visited[current] {
 		return
 	}
 	visited[current] = true
 	adjNodes := graphs.GetAdjacentNodesForVertex(current)
-	for key,_ := range adjNodes {
-		dfs(graphs,visited,key,dfsString)
+	for key, _ := range adjNodes {
+		dft(graphs, visited, key, dftArrayOrdered)
 	}
-	log.Printf("%d ->",current)
-	dfsString = dfsString+fmt.Sprintf("-> %d",current)
+	dftArrayOrdered = append(dftArrayOrdered, current)
+	fmt.Printf("%d->", current)
+
 }

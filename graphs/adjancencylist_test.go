@@ -1,12 +1,11 @@
-package adjancencylist
+package graphs
 
 import (
-	"goca/graphs"
 	"testing"
 )
 
-var testAdjListDirected = AdjacencyList{4, graphs.DIRECTED}
-var testAdjListUnDirected = AdjacencyList{4, graphs.UNDIRECTED}
+var testAdjListDirected = AdjacencyList{4, DIRECTED}
+var testAdjListUnDirected = AdjacencyList{4, UNDIRECTED}
 
 func TestAdjacencyList_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 	testAdjListDirected.Init()

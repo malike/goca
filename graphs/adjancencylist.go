@@ -1,13 +1,12 @@
-package adjancencylist
+package graphs
 
 import (
 	"errors"
-	"goca/graphs"
 )
 
 type AdjacencyList struct {
 	Vertices  int
-	GraphType graphs.GraphType
+	GraphType GraphType
 }
 
 type Node struct {
@@ -69,7 +68,7 @@ func (adjacencyList AdjacencyList) AddEdge(vertexOne int, vertexTwo int) error {
 	}
 	node := AdjList[vertexOne].AddNode(vertexTwo)
 	AdjList[vertexOne] = node
-	if adjacencyList.GraphType == graphs.UNDIRECTED {
+	if adjacencyList.GraphType == UNDIRECTED {
 		node := AdjList[vertexTwo].AddNode(vertexOne)
 		AdjList[vertexTwo] = node
 	}
@@ -82,7 +81,7 @@ func (adjacencyList AdjacencyList) AddEdgeWithWeight(vertexOne int, vertexTwo in
 	}
 	node := AdjList[vertexOne].AddNodeWithWeight(vertexTwo, weight)
 	AdjList[vertexOne] = node
-	if adjacencyList.GraphType == graphs.UNDIRECTED {
+	if adjacencyList.GraphType == UNDIRECTED {
 		node := AdjList[vertexTwo].AddNodeWithWeight(vertexOne, weight)
 		AdjList[vertexTwo] = node
 	}
@@ -131,7 +130,7 @@ func (adjacencyList AdjacencyList) HasEdge(vertexOne int, vertexTwo int) bool {
 	return false
 }
 
-func (adjacencyList AdjacencyList) GetGraphType() graphs.GraphType {
+func (adjacencyList AdjacencyList) GetGraphType() GraphType {
 	return adjacencyList.GraphType
 }
 
