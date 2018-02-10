@@ -1,13 +1,12 @@
-package adjancencymatrix
+package graphs
 
 import (
 	"errors"
-	"goca/graphs"
 )
 
 type AdjacencyMatrix struct {
 	Vertices  int
-	GraphType graphs.GraphType
+	GraphType GraphType
 }
 
 var AdjMatrix [][]int
@@ -27,7 +26,7 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdge(vertexOne int, vertexTwo int) err
 	}
 
 	AdjMatrix[vertexOne][vertexTwo] = 1
-	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
+	if adjacencyMatrix.GraphType == UNDIRECTED {
 
 		AdjMatrix[vertexTwo][vertexOne] = 1
 	}
@@ -40,7 +39,7 @@ func (adjacencyMatrix AdjacencyMatrix) AddEdgeWithWeight(vertexOne int, vertexTw
 	}
 
 	AdjMatrix[vertexOne][vertexTwo] = weight
-	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
+	if adjacencyMatrix.GraphType == UNDIRECTED {
 
 		AdjMatrix[vertexTwo][vertexOne] = weight
 	}
@@ -53,7 +52,7 @@ func (adjacencyMatrix AdjacencyMatrix) RemoveEdge(vertexOne int, vertexTwo int) 
 	}
 
 	AdjMatrix[vertexOne][vertexTwo] = 0
-	if adjacencyMatrix.GraphType == graphs.UNDIRECTED {
+	if adjacencyMatrix.GraphType == UNDIRECTED {
 
 		AdjMatrix[vertexTwo][vertexOne] = 0
 	}
@@ -67,7 +66,7 @@ func (adjacencyMatrix AdjacencyMatrix) HasEdge(vertexOne int, vertexTwo int) boo
 	return (AdjMatrix[vertexOne][vertexTwo] != 0)
 }
 
-func (adjacencyMatrix AdjacencyMatrix) GetGraphType() graphs.GraphType {
+func (adjacencyMatrix AdjacencyMatrix) GetGraphType() GraphType {
 	return adjacencyMatrix.GraphType
 }
 

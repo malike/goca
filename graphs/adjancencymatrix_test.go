@@ -1,12 +1,11 @@
-package adjancencymatrix
+package graphs
 
 import (
-	"goca/graphs"
 	"testing"
 )
 
-var testAdjMatrixDirected = AdjacencyMatrix{4, graphs.DIRECTED}
-var testAdjMatrixUnDirected = AdjacencyMatrix{4, graphs.UNDIRECTED}
+var testAdjMatrixDirected = AdjacencyMatrix{4, DIRECTED}
+var testAdjMatrixUnDirected = AdjacencyMatrix{4, UNDIRECTED}
 
 func TestAdjacencyMatrix_AddEdgeDirectedGreaterThanVertex(t *testing.T) {
 	testAdjMatrixDirected.Init()
