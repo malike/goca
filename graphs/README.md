@@ -5,13 +5,22 @@ What are graphs?
 
 # Algorithms
 
-#### Breadth First Search [BFS]
+Traversing is travel or visit. There are two ways of vising the nodes
+of a graph Breadth First(BFT) and Depth First(DFT).
+
+#### Breadth First Traversal [BFT]
 
 ***i. Description***
 
+This is a way of traversing Graphs where you visit a node and all it's children before moving
+to the next.
+
+
 ***ii. Use Cases***
 
-#### Depth First Search [DFS]
+
+
+#### Depth First Traversal [DFT]
 
 ***i. Description***
 
