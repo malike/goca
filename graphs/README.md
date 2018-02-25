@@ -16,7 +16,7 @@ This is a way of traversing graphs where you visit a node and all it's children 
 to the next level of neighbours. This means other nodes at the same level of the inital node visited.
 
 
-![https://en.wikipedia.org/wiki/Breadth-first_search](https://en.wikipedia.org/wiki/File:Animated_BFS.gif)
+![https://en.wikipedia.org/wiki/Breadth-first_search](https://upload.wikimedia.org/wikipedia/commons/4/46/Animated_BFS.gif)
 
 With the aid of a **queue** we build the nodes that need to be visited in order and using the FIFO foundation of queues
 we visit the nodes in order.
